@@ -5,7 +5,6 @@ import re
 def parse_barcode(barcode_data):
     pattern = r"@#+[A-Z][A-Za-z0-9]{4,}[A-Z]@#+"
     
-    
     for barcode in barcode_data:
         match = re.fullmatch(pattern, barcode)
         
@@ -20,8 +19,6 @@ def parse_barcode(barcode_data):
 num = int(input())
 data = [input() for _ in range(num)]
 parse_barcode(data)
-
-
 
 # Second task is from me
 
