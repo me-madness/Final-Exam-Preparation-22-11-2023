@@ -4,7 +4,7 @@ import re
 
 data = input()
 pattern = r"(#|@)([A-Za-z]{3,})(\1{2})([A-Za-z]{3,})\1"
-result = re.findall(pattern, data)
+result = re.findall(pattern, data)      #Wen use findall, we get a tuple, not a list.
 mirror_words = []
 the_count_of_mirror_words = len(result)
 
