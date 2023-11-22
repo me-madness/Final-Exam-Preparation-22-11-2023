@@ -8,12 +8,29 @@ def drive(car, distance, required_fuel):
         car['mileage'] += distance
         car['fuel'] -= required_fuel
         print(f"{car['name']} driven for {distance} kilometers. {required_fuel} liters of fuel consumed.")
-        
+        if car['mileage'] >= 100000:
+            print(f"Time to sell the {car['name']}!")
+            return True
     else:
         print("Not enough fuel to make that ride")
         
+    return False
+
+
+def refuel(car, added_fuel):
+    max_fuel = 75
+    fuel_to_add =  min(added_fuel, max_fuel - car['fuel'])
+    car['fuel'] += fuel_to_add
+    print(f"{car['name']} refueled with {fuel_to_add} liters")
     
     
+def revert(car, kilometers):
+    car['mileage'] -= kilometers
+    if car['mileage'] < 10000:
+        car['mileage'] = 10000
+    else:          
+            print(f"{car['name']} mileage decreased by {kilometers} kilometers")
+
     
 def main_function():
     n = int(input())
@@ -40,15 +57,21 @@ def main_function():
                 if action == 'Drive':
                     distance = int(tokens[2])
                     fuel = int(tokens[3])
+                    if drive(car, distance, fuel):
+                        cars.remove(car)
+                        
+                elif action == 'Refuel':
+                        added_fuel = int(tokens[2])
+                        refuel(car, added_fuel)
+                elif action == 'Revert':
+                    kilometers = int(tokens[2])
+                    revert(car, kilometers)
+                    
+                    
+    for car in cars:
+        print(f"{car['name']} -> Mileage: {car['mileage']} kms, Fuel in the tank: {car['fuel']} lt.")
 
-
-
-
-
-print(f"Time to sell the {car}!")
-print(f"{car} mileage decreased by {amount_reverted} kilometers")
-print(f"{car} -> Mileage: {mileage} kms, Fuel in the tank: {fuel} lt.")
-
+main_function()                                    
 
 # Second task is from me
 
